@@ -13,6 +13,7 @@
   "author": "SHUBHAM PANDEY",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.20.2",
     "dotenv": "^16.3.1",
     "mysql2": "^3.6.0",
     "sequelize": "^6.32.1",
