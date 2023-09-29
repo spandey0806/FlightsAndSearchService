@@ -1,35 +1,53 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class Airport extends Model {
+
+/** @type {import('sequelize-cli').Migration} */
+module.exports = {
+  async up (queryInterface, Sequelize) {
     /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
+     * Add seed commands here.
+     *
+     * Example:
+     * await queryInterface.bulkInsert('People', [{
+     *   name: 'John Doe',
+     *   isBetaMember: false
+     * }], {});
+    */
+
+    await queryInterface.bulkInsert('Airports', [
+      {
+        name: 'Kempegowda International Airport',
+        cityId: 4,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: 'Mysuru Airport',
+        cityId: 4,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: 'Mengaluru International Airport',
+        cityId: 4,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        name: 'Indira Gandhi International Airport',
+        cityId: 2,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      }
+    ], {});
+  },
+
+  async down (queryInterface, Sequelize) {
+    /**
+     * Add commands to revert seed here.
+     *
+     * Example:
+     * await queryInterface.bulkDelete('People', null, {});
      */
-    static associate(models) {
-      // define association here
-      this.belongsTo(models.city,{
-        foreignKey:'cityId',
-        onDelete:'CASCADE'
-      });
-    }
+
   }
-  Airport.init({
-    name: {
-       type:DataTypes.STRING,
-       allowNull:false
-    },
-    address: DataTypes.STRING,
-    cityId: {
-      type:DataTypes.INTEGER,
-      allowNull:false
-    }
-  }, {
-    sequelize,
-    modelName: 'Airport',
-  });
-  return Airport;
 };
